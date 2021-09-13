@@ -1,0 +1,14 @@
+Source: hamonikr-update
+Section: admin
+Priority: optional
+Maintainer: HamoniKR Team <pkg@hamonikr.org>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.5
+
+Package: hamonikr-update
+Architecture: all
+Depends:
+ mintupdate
+Conflicts: mintupdate-gnome, mintupdate-kde, mintupdate-xfce
+Replaces: mintupdate-gnome, mintupdate-kde, mintupdate-xfce, mintupdate
+Description: Change & Replace some mintupdate files.
