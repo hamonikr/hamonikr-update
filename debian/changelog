@@ -1,3 +1,9 @@
+hamonikr-update (1.0.1) hanla; urgency=medium
+
+  * fix href link in rel_upgrade.py
+
+ -- HamoniKR Team <pkg@hamonikr.org>  Mon, 13 Sep 2021 14:34:36 +0900
+
 hamonikr-update (1.0.0) hanla; urgency=medium
 
   * First Release hamonikr-update
