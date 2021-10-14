@@ -1,3 +1,10 @@
+hamonikr-update (1.0.2) hanla; urgency=medium
+
+  * Update po translation
+
+ -- HamoniKR Team <pkg@hamonikr.org>  Thu, 14 Oct 2021 13:08:31 +0900
+
+
 hamonikr-update (1.0.1) hanla; urgency=medium
 
   * fix href link in rel_upgrade.py
