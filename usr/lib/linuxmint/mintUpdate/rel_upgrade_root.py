@@ -17,7 +17,7 @@ codename = sys.argv[1]
 window_id = int(sys.argv[2])
 sources_list = "/usr/share/hamonikr-upgrade-info/%s/official-package-repositories.list" % codename
 sources_list2 = "/usr/share/hamonikr-upgrade-info/%s/hamonikr.list" % codename
-sources_list3 = "/usr/share/hamonikr-upgrade-info/%s/hamonikr-pkg.list" % codename
+# sources_list3 = "/usr/share/hamonikr-upgrade-info/%s/hamonikr-pkg.list" % codename
 blacklist_filename = "/usr/share/hamonikr-upgrade-info/%s/blacklist" % codename
 additions_filename = "/usr/share/hamonikr-upgrade-info/%s/additions" % codename
 removals_filename = "/usr/share/hamonikr-upgrade-info/%s/removals" % codename
@@ -76,7 +76,7 @@ if os.path.exists("/etc/apt/sources.list.d/hamonikr-pkg.list"):
 
 subprocess.run(["cp", sources_list, "/etc/apt/sources.list.d/official-package-repositories.list"])
 subprocess.run(["cp", sources_list2, "/etc/apt/sources.list.d/hamonikr.list"])
-subprocess.run(["cp", sources_list3, "/etc/apt/sources.list.d/hamonikr-pkg.list"])
+# subprocess.run(["cp", sources_list3, "/etc/apt/sources.list.d/hamonikr-pkg.list"])
 
 # STEP 2: UPDATE APT CACHE
 #-------------------------
