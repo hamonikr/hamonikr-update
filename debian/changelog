@@ -1,3 +1,17 @@
+hamonikr-update (2.0.2) hanla; urgency=medium
+
+  * Add synaptic purge
+
+ -- HamoniKR Team <pkg@hamonikr.org>  Mon, 07 Nov 2022 16:33:19 +0900
+ 
+hamonikr-update (2.0.1) hanla; urgency=medium
+
+  * Add taebaekupate.dummy
+   - troubleshooting hamonikr taebaek ui, theme
+
+ -- HamoniKR Team <pkg@hamonikr.org>  Fri, 04 Nov 2022 18:04:40 +0900
+
+
 hamonikr-update (2.0.0) hanla; urgency=medium
 
   * Release Upgrade Taebaek

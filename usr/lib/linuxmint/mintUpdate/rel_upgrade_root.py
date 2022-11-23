@@ -52,6 +52,18 @@ def remove_packages(packages):
         f.flush()
         subprocess.run(cmd)
 
+def purge_packages(packages):
+    if len(packages) > 0:
+        cmd = ["sudo", "/usr/sbin/synaptic", "--hide-main-window", "--non-interactive", "--parent-window-id", "%s" % window_id, "-o", "Synaptic::closeZvt=true"]
+        f = tempfile.NamedTemporaryFile()
+        for package in packages:
+            pkg_line = "%s\tpurge\n" % package
+            f.write(pkg_line.encode("utf-8"))
+        cmd.append("--set-selections-file")
+        cmd.append("%s" % f.name)
+        f.flush()
+        subprocess.run(cmd)
+
 def file_to_list(filename):
     returned_list = []
     if os.path.exists(filename):
@@ -87,7 +99,7 @@ subprocess.run(["sudo", "/usr/sbin/synaptic", "--hide-main-window", "--update-at
 # STEP 2.5 : PRE REMOVE PACKAGE (depends probrem)
 
 removals = file_to_list(preremovals_filename)
-remove_packages(removals)
+purge_packages(removals)
 
 # STEP 3: INSTALL MINT UPDATES
 #--------------------------------
@@ -115,7 +127,7 @@ for pkg in changes:
             if (newVersion != oldVersion):
                 update_type = "package"
                 for origin in pkg.candidate.origins:
-                    if origin.origin == "linuxmint" or origin.origin == "pkg.hamonikr.org":
+                    if origin.origin == "linuxmint" or origin.origin == "update.hamonikr.org":
                         if origin.component != "romeo" and package != "linux-kernel-generic":
                             packages.append(package)
 
@@ -133,7 +145,12 @@ install_packages(additions)
 removals = file_to_list(removals_filename)
 remove_packages(removals)
 
-# STEP 6: UPDATE GRUB
+# STEP 6: MAKE taebaekupdate.dummy FILE
+# FIX hamonikr 6.0 UI in hamonikr-system
+if not os.path.exists("/var/log/taebaekupdate.dummy"):
+    subprocess.run(["touch", "/var/log/taebaekupdate.dummy"])
+
+# STEP 7: UPDATE GRUB
 #--------------------
 
 try:
