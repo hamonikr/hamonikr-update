@@ -90,6 +90,9 @@ subprocess.run(["cp", sources_list, "/etc/apt/sources.list.d/official-package-re
 subprocess.run(["cp", sources_list2, "/etc/apt/sources.list.d/hamonikr.list"])
 # subprocess.run(["cp", sources_list3, "/etc/apt/sources.list.d/hamonikr-pkg.list"])
 
+# TO-DO
+# 하모니카 6.0에서 사용하던 ppa 또는 직접 추가한 저장소 중 focal 코드명이 있는 경우 7.0에서는 jammy 환경으로 변경되어야 함
+
 # STEP 2: UPDATE APT CACHE
 #-------------------------
 
@@ -127,7 +130,7 @@ for pkg in changes:
             if (newVersion != oldVersion):
                 update_type = "package"
                 for origin in pkg.candidate.origins:
-                    if origin.origin == "linuxmint" or origin.origin == "update.hamonikr.org":
+                    if origin.origin == "linuxmint" or origin.origin == "repo.hamonikr.org":
                         if origin.component != "romeo" and package != "linux-kernel-generic":
                             packages.append(package)
 
@@ -145,10 +148,10 @@ install_packages(additions)
 removals = file_to_list(removals_filename)
 remove_packages(removals)
 
-# STEP 6: MAKE taebaekupdate.dummy FILE
-# FIX hamonikr 6.0 UI in hamonikr-system
-if not os.path.exists("/var/log/taebaekupdate.dummy"):
-    subprocess.run(["touch", "/var/log/taebaekupdate.dummy"])
+# STEP 6: MAKE kumkangupdate.dummy FILE
+# 7.0 업그레이드 시 해야하는 일이 있으면 이 파일로 체크해서 hamonikr-system 의 set-user-env 에서 수행
+if not os.path.exists("/var/log/kumkangupdate.dummy"):
+    subprocess.run(["touch", "/var/log/kumkangupdate.dummy"])
 
 # STEP 7: UPDATE GRUB
 #--------------------
